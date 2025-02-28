@@ -1,14 +1,8 @@
+streamlit
 streamlit_option_menu
 pymongo
 requests
-random
-gridfs
-PIL
-io
-datetime
 pymupdf
-bson
-time
 pandas
-streamlit_pandas
-
+pillow
+gridfs

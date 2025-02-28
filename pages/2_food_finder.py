@@ -64,8 +64,18 @@ df = load_data()
 
 
 # querying data from spreadsheet -> https://www.youtube.com/watch?v=L4KVn1XnSAA
-edited_df = st.data_editor(df)
-st.write(edited_df)
+filters = {}
+for col in selected_columns:
+    unique_values = df[col].dropna().unique()
+    selected_values = st.multiselect(f"Select values for {col}", unique_values)
+    if selected_values:
+        filters[col] = selected_values
+
+filtered_df = df.copy()
+for col, values in filters.items():
+    filtered_df = filtered_df[filtered_df[col].isin(values)]
+
+st.write(filtered_df)
 
 st.success("Tip: Senior cats need **high protein** and **low phosphorus** food to prevent kidney disease! 🩺🐱")
 

@@ -64,7 +64,7 @@ if st.button("🏆 Show Top 5 Cat Foods"):
     #st.cache_data.clear()
     #st.success("Cache cleared! Data has been updated.")
 
-selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "Sodium", "Drink Water", "prod. In Germany?"]
+selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "prod. In Germany?"]
 
 
 filters = {}

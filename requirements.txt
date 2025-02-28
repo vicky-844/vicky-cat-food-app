@@ -1,2 +1,14 @@
 streamlit_option_menu
 pymongo
+requests
+random
+gridfs
+PIL
+io
+datetime
+fitz
+bson
+time
+pandas
+streamlit_pandas
+

@@ -27,11 +27,11 @@ st.divider()
 def load_data():
     if os.path.exists("cat_food_overview.xlsx"):
         df = pd.read_excel("cat_food_overview.xlsx")
-        st.success("Excel-Datei erfolgreich geladen!")
+        st.success("Excel file loaded successfully!")
         return df
     else:
-        st.error("Excel-Datei nicht gefunden!")
-        return pd.DataFrame()  # Rückgabe eines leeren DataFrames bei Fehler
+        st.error("Excel file not found!")
+        return pd.DataFrame()  
 
 df = load_data()
 
@@ -64,10 +64,7 @@ if st.button("🏆 Show Top 5 Cat Foods"):
     #st.cache_data.clear()
     #st.success("Cache cleared! Data has been updated.")
 
-selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "Sodium", "Drink Water", "prod. In Germany?", "Bio"]
-
-# Check and show the columns of the dataframe
-st.write("Columns in DataFrame:", df.columns)
+selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "Sodium", "Drink Water", "prod. In Germany?"]
 
 filters = {}
 for col in selected_columns:

@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import streamlit_pandas as sp
 import random
 
 st.set_page_config(page_title="Food Finder")
@@ -65,9 +64,8 @@ df = load_data()
 
 
 # querying data from spreadsheet -> https://www.youtube.com/watch?v=L4KVn1XnSAA
-all_widgets = sp.create_widgets(df)
-res = sp.filter_df(df, all_widgets)
-st.write(res)
+edited_df = st.data_editor(df)
+st.write(edited_df)
 
 st.success("Tip: Senior cats need **high protein** and **low phosphorus** food to prevent kidney disease! 🩺🐱")
 

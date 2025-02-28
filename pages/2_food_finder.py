@@ -31,7 +31,7 @@ def load_data():
         return df
     else:
         st.error("Excel file not found!")
-        return pd.DataFrame()  
+        return pd.DataFrame()  # return empty if error
 
 df = load_data()
 
@@ -66,19 +66,33 @@ if st.button("🏆 Show Top 5 Cat Foods"):
 
 selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "Sodium", "Drink Water", "prod. In Germany?"]
 
+
 filters = {}
+
+# Sidebar Filter (for categorical columns)
 for col in selected_columns:
-    if col in df.columns:  # Überprüfe, ob die Spalte im DataFrame existiert
-        unique_values = df[col].dropna().unique()
-        selected_values = st.multiselect(f"Select values for {col}", unique_values)
-        if selected_values:
-            filters[col] = selected_values
-    else:
-        st.warning(f"Spalte {col} nicht gefunden!")
+    if col in df.columns:
+        if df[col].dtype == 'object':  #for text
+            unique_values = df[col].dropna().unique()
+            selected_values = st.sidebar.multiselect(f"Select values for {col}", unique_values)
+            if selected_values:
+                filters[col] = selected_values
+        elif df[col].dtype in ['float64', 'int64']:  #for numeric data
+            min_value = df[col].min()
+            max_value = df[col].max()
+            selected_range = st.sidebar.slider(
+                f"Select range for {col}", min_value, max_value, (min_value, max_value)
+            )
+            filters[col] = selected_range
 
 filtered_df = df.copy()
+
+# Apply the filters to the dataframe
 for col, values in filters.items():
-    filtered_df = filtered_df[filtered_df[col].isin(values)]
+    if isinstance(values, tuple):  # Numerischer Bereich (für Slider)
+        filtered_df = filtered_df[(filtered_df[col] >= values[0]) & (filtered_df[col] <= values[1])]
+    else:  # Textwerte (für Multiselect)
+        filtered_df = filtered_df[filtered_df[col].isin(values)]
 
 st.write(filtered_df)
 

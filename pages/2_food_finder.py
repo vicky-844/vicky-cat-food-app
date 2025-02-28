@@ -59,9 +59,7 @@ if st.button("🏆 Show Top 5 Cat Foods"):
     #st.cache_data.clear()
     #st.success("Cache cleared! Data has been updated.")
 
-
-df = load_data()
-
+selected_columns = ["Brand", "Name", "Sort", "Protein", "Fat", "Raw Ashes", "Raw Fiber", "Moisture", "Phosphorus", "Sodium", "Drink Water", "prod. In Germany?", "Bio"]
 
 # querying data from spreadsheet -> https://www.youtube.com/watch?v=L4KVn1XnSAA
 filters = {}

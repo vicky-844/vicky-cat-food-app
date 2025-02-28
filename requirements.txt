@@ -6,7 +6,7 @@ gridfs
 PIL
 io
 datetime
-fitz
+pymupdf
 bson
 time
 pandas

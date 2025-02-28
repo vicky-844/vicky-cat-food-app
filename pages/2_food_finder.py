@@ -22,7 +22,6 @@ st.info("We recommend reading the page “Good To Know” to get an overview of 
 st.divider()
 
 
-# insert excel spreadsheet -> tutorial: https://www.youtube.com/watch?v=7E3yxq-P-a8
 @st.cache_data
 def load_data():
     if os.path.exists("cat_food_overview.xlsx"):
@@ -89,9 +88,9 @@ filtered_df = df.copy()
 
 # Apply the filters to the dataframe
 for col, values in filters.items():
-    if isinstance(values, tuple):  # Numerischer Bereich (für Slider)
+    if isinstance(values, tuple):  #numeric (for Slider)
         filtered_df = filtered_df[(filtered_df[col] >= values[0]) & (filtered_df[col] <= values[1])]
-    else:  # Textwerte (für Multiselect)
+    else:  #text (for Multiselect)
         filtered_df = filtered_df[filtered_df[col].isin(values)]
 
 st.write(filtered_df)
@@ -99,8 +98,8 @@ st.write(filtered_df)
 st.success("Tip: Senior cats need **high protein** and **low phosphorus** food to prevent kidney disease! 🩺🐱")
 
 if st.button("🎲 Give me a random food recommendation!"):
-    if not df.empty:  # Sicherstellen, dass DataFrame nicht leer ist
-        random_food = df.sample(1)  # Zufällige Zeile aus DataFrame
+    if not df.empty:  #make sure not empty
+        random_food = df.sample(1)
         st.write(random_food)
     else:
         st.error("No data available, please check the Excel file.")

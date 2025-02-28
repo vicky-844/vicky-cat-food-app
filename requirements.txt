@@ -5,4 +5,3 @@ requests
 pymupdf
 pandas
 pillow
-gridfs
